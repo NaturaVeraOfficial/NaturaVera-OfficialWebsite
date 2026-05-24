@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Natura Vera — Clean Skin, Simple Habits</title>
+  <meta name="description" content="Natura Vera. Honest skincare rooted in nature. Silicone facial cleansing brush + a skincare guide for just £1.99.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green-deep:   #1B4332;
+      --green-mid:    #2D6A4F;
+      --green-sage:   #52B788;
+      --green-light:  #95D5B2;
+      --cream:        #FEFAE0;
+      --cream-dark:   #F0EDD4;
+      --earth:        #D4A373;
+      --earth-light:  #F2D9B8;
+      --red-soft:     #C0392B;
+      --red-bg:       #FDF0EE;
+      --white:        #FFFFFF;
+      --text-dark:    #1B4332;
+      --text-mid:     #40916C;
+      --text-light:   #74C69D;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--text-dark); overflow-x: hidden; }
+
+    /* ——— NAV ——— */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2.5rem;
+      background: rgba(254, 250, 224, 0.9);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(82, 183, 136, 0.15);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 0.6rem;
+      text-decoration: none;
+    }
+    .nv-badge {
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 1.5px dotted var(--green-sage);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 1px;
+    }
+    .nv-badge svg { display: block; }
+    .nav-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-weight: 600;
+      color: var(--green-deep); letter-spacing: 0.1em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--green-mid); text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--green-sage); }
+
+    /* ——— HERO ——— */
+    .hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; padding: 8rem 6rem 4rem; gap: 4rem;
+      position: relative; overflow: hidden;
+    }
+    /* blurred photo background — dissolves the booklet text */
+    .hero::before {
+      content: ''; position: absolute;
+      inset: -20px; /* oversize slightly to hide blur edges */
+      background-image: url('assets/hero_bg.jpg');
+      background-size: cover;
+      background-position: center 20%;
+      filter: blur(7px);
+      z-index: 0; pointer-events: none;
+    }
+    /* dark-green overlay on top of the blurred photo */
+    .hero::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(
+        160deg,
+        rgba(10, 32, 18, 0.70) 0%,
+        rgba(18, 52, 30, 0.58) 50%,
+        rgba(8, 28, 16, 0.72) 100%
+      );
+      pointer-events: none; z-index: 1;
+    }
+
+    /* botanical side stems — booklet style */
+    .hero-plant {
+      position: absolute; pointer-events: none; z-index: 1;
+    }
+    .hero-plant svg { display: block; }
+    .plant-left  { top: 0; left: 0;  height: 100%; opacity: 0.45; }
+    .plant-right { top: 0; right: 0; height: 100%; opacity: 0.38; }
+
+    .hero-text { position: relative; z-index: 2; }
+    .hero-tag {
+      display: inline-block; font-size: 0.68rem; font-weight: 500;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--green-light); border: 1px solid rgba(149,213,178,0.5);
+      border-radius: 2rem; padding: 0.35rem 1rem; margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 4.5vw, 4.8rem);
+      font-weight: 300; line-height: 1.1;
+      color: var(--cream); margin-bottom: 1.2rem;
+    }
+    .hero h1 em { font-style: italic; color: var(--green-light); }
+    .hero-sub {
+      font-size: 0.95rem; font-weight: 300; color: rgba(254,250,224,0.82);
+      line-height: 1.8; max-width: 40ch; margin-bottom: 2rem;
+    }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--green-sage); color: var(--white);
+      padding: 0.85rem 2rem; border-radius: 3rem;
+      font-size: 0.83rem; font-weight: 500; letter-spacing: 0.04em;
+      text-decoration: none; transition: background 0.25s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--green-light); color: var(--green-deep); transform: translateY(-2px); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: transparent; color: var(--cream);
+      padding: 0.85rem 2rem; border-radius: 3rem;
+      font-size: 0.83rem; font-weight: 500; letter-spacing: 0.04em;
+      text-decoration: none; border: 1px solid rgba(149,213,178,0.5);
+      transition: border-color 0.25s, color 0.25s, background 0.25s;
+    }
+    .btn-secondary:hover { border-color: var(--green-light); background: rgba(149,213,178,0.1); color: var(--green-light); }
+
+    /* ——— HERO CARD ——— */
+    .hero-visual {
+      position: relative; z-index: 2;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .profile-card {
+      background: var(--white); border-radius: 2rem;
+      padding: 2.5rem;
+      box-shadow: 0 20px 60px rgba(27,67,50,0.12), 0 4px 16px rgba(27,67,50,0.06);
+      width: 100%; max-width: 360px; text-align: center; position: relative;
+    }
+    .profile-card::before {
+      content: ''; position: absolute; inset: -2px; border-radius: 2.1rem;
+      background: linear-gradient(135deg, var(--green-sage), var(--earth-light));
+      z-index: -1; opacity: 0.4;
+    }
+    .profile-pic-wrapper {
+      position: relative; width: 120px; height: 120px; margin: 0 auto 1.2rem;
+    }
+    .profile-pic-ring {
+      position: absolute; inset: -4px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--green-sage), var(--earth)); z-index: 0;
+    }
+    .profile-pic {
+      position: relative; z-index: 1; width: 120px; height: 120px;
+      border-radius: 50%; object-fit: cover; border: 3px solid var(--white);
+    }
+    .profile-pic-fallback {
+      position: relative; z-index: 1; width: 120px; height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green-light), var(--green-sage));
+      border: 3px solid var(--white);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif; font-size: 2.5rem;
+      font-weight: 600; color: var(--white);
+    }
+    .ig-handle { font-size: 0.75rem; color: var(--text-light); letter-spacing: 0.08em; margin-bottom: 0.3rem; }
+    .profile-name {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.4rem;
+      font-weight: 600; color: var(--green-deep); margin-bottom: 0.5rem;
+    }
+    .profile-bio { font-size: 0.82rem; color: var(--text-mid); line-height: 1.6; margin-bottom: 1.2rem; }
+    .profile-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem; padding: 1rem; background: var(--cream);
+      border-radius: 1rem; margin-bottom: 1.2rem;
+    }
+    .stat-item { text-align: center; }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.2rem;
+      font-weight: 600; color: var(--green-deep); display: block;
+    }
+    .stat-label { font-size: 0.62rem; color: var(--text-mid); letter-spacing: 0.1em; text-transform: uppercase; }
+    .ig-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.78rem; color: var(--green-mid); text-decoration: none;
+      border: 1px solid var(--green-light); border-radius: 2rem; padding: 0.4rem 1rem;
+      transition: all 0.2s;
+    }
+    .ig-link:hover { background: var(--green-deep); color: var(--white); border-color: var(--green-deep); }
+
+    /* ——— MANIFESTO STRIP ——— */
+    .manifesto {
+      background: var(--green-deep); padding: 2.5rem 6rem;
+      display: flex; align-items: center; justify-content: center; gap: 4rem;
+      flex-wrap: wrap;
+    }
+    .manifesto-item {
+      display: flex; align-items: center; gap: 1rem;
+      color: var(--cream);
+    }
+    .manifesto-item span:first-child {
+      font-size: 1.4rem;
+    }
+    .manifesto-item p {
+      font-size: 0.82rem; font-weight: 300; letter-spacing: 0.05em;
+      opacity: 0.85; max-width: 16ch; line-height: 1.5;
+    }
+    .manifesto-sep { width: 1px; height: 40px; background: rgba(149,213,178,0.3); }
+
+    /* ——— HONEST SECTION ——— */
+    .honest-section {
+      padding: 7rem 6rem; background: var(--white);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+    }
+    .section-label {
+      font-size: 0.68rem; font-weight: 500; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--green-sage); margin-bottom: 0.8rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3vw, 3.2rem); font-weight: 300;
+      color: var(--green-deep); margin-bottom: 1.2rem; line-height: 1.15;
+    }
+    .section-body {
+      font-size: 0.92rem; color: var(--green-mid); line-height: 1.85;
+      margin-bottom: 1.5rem;
+    }
+    .golden-rule {
+      background: var(--cream); border-left: 3px solid var(--green-sage);
+      border-radius: 0 1rem 1rem 0; padding: 1.2rem 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .golden-rule strong {
+      font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--green-sage); display: block; margin-bottom: 0.4rem;
+    }
+    .golden-rule p { font-size: 0.88rem; color: var(--green-mid); line-height: 1.7; }
+
+    .habits-grid {
+      display: flex; flex-direction: column; gap: 0.8rem;
+    }
+    .habit-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+      background: var(--cream); border-radius: 1rem; padding: 1rem 1.2rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .habit-item:hover { transform: translateX(4px); box-shadow: 0 4px 16px rgba(27,67,50,0.07); }
+    .habit-check {
+      width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--green-sage), var(--green-light));
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 1px; font-size: 0.65rem; color: var(--white); font-weight: 700;
+    }
+    .habit-item p { font-size: 0.85rem; color: var(--green-mid); line-height: 1.5; }
+    .habit-item p strong { color: var(--green-deep); }
+
+    /* ——— ROUTINE SECTION ——— */
+    .routine-section {
+      padding: 7rem 6rem; background: var(--cream-dark);
+    }
+    .routine-header { text-align: center; margin-bottom: 4rem; }
+    .routine-header .section-title { margin-bottom: 0.8rem; }
+    .routine-header p { font-size: 0.92rem; color: var(--green-mid); max-width: 52ch; margin: 0 auto; line-height: 1.7; }
+
+    .routine-steps {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    .routine-step {
+      background: var(--white); border-radius: 1.5rem; padding: 2.5rem;
+      text-align: center; position: relative;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .routine-step:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(27,67,50,0.1); }
+    .step-num {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--green-deep); color: var(--cream);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 600;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.2rem;
+    }
+    .step-icon { font-size: 2rem; margin-bottom: 0.8rem; display: block; }
+    .routine-step h4 {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.3rem;
+      font-weight: 600; color: var(--green-deep); margin-bottom: 0.7rem;
+    }
+    .routine-step p { font-size: 0.83rem; color: var(--text-mid); line-height: 1.7; }
+    .step-connector {
+      position: absolute; top: 4rem; right: -1.5rem;
+      font-size: 1.2rem; color: var(--green-light); z-index: 1;
+    }
+
+    .brush-tip {
+      background: var(--green-deep); color: var(--cream);
+      border-radius: 1.5rem; padding: 2rem 2.5rem;
+      display: flex; align-items: flex-start; gap: 1.5rem;
+      max-width: 700px; margin: 0 auto;
+    }
+    .brush-tip-icon { font-size: 2rem; flex-shrink: 0; margin-top: 2px; }
+    .brush-tip strong {
+      font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--green-light); display: block; margin-bottom: 0.4rem;
+    }
+    .brush-tip p { font-size: 0.88rem; opacity: 0.85; line-height: 1.7; }
+
+    /* ——— PRODUCT SECTION ——— */
+    .product-section { padding: 7rem 6rem; background: var(--white); }
+    .product-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center; margin-top: 4rem;
+    }
+    .product-visual { position: relative; }
+    .product-img-wrapper {
+      aspect-ratio: 1; border-radius: 2rem;
+      background: linear-gradient(135deg, var(--cream) 0%, var(--earth-light) 100%);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; box-shadow: 0 16px 48px rgba(27,67,50,0.1);
+    }
+    .product-icon { font-size: 8rem; filter: drop-shadow(0 4px 12px rgba(27,67,50,0.15)); }
+    .product-badge {
+      position: absolute; top: 1.5rem; right: -1rem;
+      background: var(--green-deep); color: var(--cream);
+      border-radius: 1rem; padding: 0.8rem 1.2rem; text-align: center;
+      box-shadow: 0 8px 24px rgba(27,67,50,0.25);
+    }
+    .badge-text { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.8; display: block; }
+    .badge-value { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; display: block; }
+    .product-info h3 {
+      font-family: 'Cormorant Garamond', serif; font-size: 2.2rem;
+      font-weight: 400; color: var(--green-deep); margin-bottom: 1rem; line-height: 1.2;
+    }
+    .product-desc { font-size: 0.93rem; color: var(--green-mid); line-height: 1.8; margin-bottom: 2rem; }
+    .features-list { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 2.5rem; }
+    .features-list li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.87rem; color: var(--green-mid); }
+    .feature-dot {
+      width: 20px; height: 20px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--green-sage), var(--green-light));
+      flex-shrink: 0; display: flex; align-items: center; justify-content: center; margin-top: 1px;
+    }
+    .feature-dot::after { content: '✓'; font-size: 0.6rem; color: var(--white); font-weight: 700; }
+
+    /* ——— MYTHS SECTION ——— */
+    .myths-section { padding: 7rem 6rem; background: var(--cream-dark); }
+    .myths-header { text-align: center; margin-bottom: 4rem; }
+    .myths-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+    .myth-card {
+      background: var(--red-bg); border-radius: 1.2rem; padding: 1.5rem;
+      border-left: 3px solid var(--red-soft);
+    }
+    .myth-x {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--red-soft);
+      display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.5rem;
+    }
+    .myth-x::before { content: '✗'; font-size: 1rem; }
+    .myth-card h5 {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.1rem;
+      font-weight: 600; color: #7B241C; margin-bottom: 0.5rem;
+    }
+    .myth-card p { font-size: 0.8rem; color: #922B21; line-height: 1.6; }
+    .myths-note {
+      text-align: center; margin-top: 2.5rem;
+      font-size: 0.85rem; color: var(--green-mid); font-style: italic;
+    }
+
+    /* ——— FREE GUIDE SECTION ——— */
+    .guide-section {
+      padding: 6rem; background: var(--white);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+    }
+    .guide-cover {
+      background: linear-gradient(135deg, var(--green-deep) 0%, var(--green-mid) 100%);
+      border-radius: 1.5rem; padding: 3rem 2rem; text-align: center;
+      box-shadow: 0 20px 60px rgba(27,67,50,0.2);
+      position: relative; overflow: hidden;
+    }
+    .guide-cover::before {
+      content: ''; position: absolute; top: -30%; right: -20%;
+      width: 60%; height: 60%; border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+    }
+    .guide-cover-inner { position: relative; z-index: 1; }
+    .guide-tag {
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--green-light); border: 1px solid rgba(149,213,178,0.4);
+      border-radius: 2rem; padding: 0.3rem 0.8rem; display: inline-block; margin-bottom: 1.5rem;
+    }
+    .guide-cover h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 300; color: var(--cream);
+      line-height: 1.2; margin-bottom: 0.8rem;
+    }
+    .guide-cover h3 em { font-style: italic; color: var(--green-light); }
+    .guide-cover p { font-size: 0.8rem; color: rgba(254,250,224,0.7); margin-bottom: 2rem; }
+    .guide-nv {
+      width: 56px; height: 56px; border-radius: 50%;
+      border: 2px dotted rgba(149,213,178,0.5);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto;
+    }
+    .guide-info .section-title { margin-bottom: 1rem; }
+    .guide-info p { font-size: 0.92rem; color: var(--green-mid); line-height: 1.8; margin-bottom: 1.5rem; }
+    .guide-contents { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2rem; }
+    .guide-contents li {
+      display: flex; align-items: center; gap: 0.7rem;
+      font-size: 0.85rem; color: var(--green-mid);
+    }
+    .guide-contents li::before {
+      content: '→'; color: var(--green-sage); font-weight: 700; flex-shrink: 0;
+    }
+
+    /* ——— COMING SOON ——— */
+    .coming-soon {
+      padding: 6rem;
+      background: linear-gradient(135deg, var(--green-deep) 0%, var(--green-mid) 100%);
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .coming-soon::before {
+      content: ''; position: absolute; top: -30%; left: -10%;
+      width: 50vw; height: 50vw; border-radius: 50%; background: rgba(255,255,255,0.04);
+    }
+    .coming-soon::after {
+      content: ''; position: absolute; bottom: -20%; right: -5%;
+      width: 35vw; height: 35vw; border-radius: 50%; background: rgba(255,255,255,0.03);
+    }
+    .coming-soon-inner { position: relative; z-index: 1; }
+    .coming-soon-tag {
+      display: inline-block; font-size: 0.68rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--green-light);
+      border: 1px solid rgba(149,213,178,0.4); border-radius: 2rem;
+      padding: 0.35rem 1rem; margin-bottom: 1.5rem;
+    }
+    .coming-soon h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 4vw, 4rem); font-weight: 300;
+      color: var(--cream); line-height: 1.15; margin-bottom: 1rem;
+    }
+    .coming-soon > .coming-soon-inner > p {
+      font-size: 0.95rem; color: rgba(254,250,224,0.75);
+      max-width: 52ch; margin: 0 auto 2.5rem; line-height: 1.7;
+    }
+    .notify-form {
+      display: flex; gap: 0.8rem; max-width: 420px;
+      margin: 0 auto; flex-wrap: wrap; justify-content: center;
+    }
+    .notify-form input {
+      flex: 1; min-width: 220px; padding: 0.9rem 1.4rem; border-radius: 3rem;
+      border: 1px solid rgba(149,213,178,0.3); background: rgba(255,255,255,0.1);
+      color: var(--cream); font-family: 'Inter', sans-serif; font-size: 0.85rem;
+      outline: none; backdrop-filter: blur(8px);
+    }
+    .notify-form input::placeholder { color: rgba(254,250,224,0.5); }
+    .notify-form input:focus { border-color: var(--green-light); }
+    .notify-form button {
+      padding: 0.9rem 1.8rem; border-radius: 3rem; border: none;
+      background: var(--cream); color: var(--green-deep);
+      font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 500;
+      cursor: pointer; transition: background 0.2s, transform 0.2s;
+    }
+    .notify-form button:hover { background: var(--earth-light); transform: translateY(-2px); }
+
+    /* ——— CONTACT ——— */
+    .contact-section { padding: 6rem; background: var(--cream); text-align: center; }
+    .contact-section .section-title { margin-bottom: 0.8rem; }
+    .contact-section > p { font-size: 0.92rem; color: var(--text-mid); margin-bottom: 2rem; }
+    .contact-closing {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-style: italic; color: var(--earth);
+      margin-bottom: 2rem;
+    }
+    .social-links { display: flex; gap: 1rem; justify-content: center; }
+    .social-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.65rem 1.4rem; border-radius: 2rem;
+      font-size: 0.82rem; font-weight: 500; text-decoration: none;
+      border: 1px solid var(--green-light); color: var(--green-mid); transition: all 0.2s;
+    }
+    .social-link:hover { background: var(--green-deep); color: var(--cream); border-color: var(--green-deep); }
+
+    /* ——— FOOTER ——— */
+    footer {
+      background: var(--green-deep); color: rgba(254,250,224,0.6);
+      padding: 2.5rem 6rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-left { display: flex; align-items: center; gap: 0.8rem; }
+    .footer-nv {
+      width: 30px; height: 30px; border-radius: 50%;
+      border: 1px dotted rgba(149,213,178,0.5);
+      display: flex; align-items: center; justify-content: center;
+    }
+    footer .footer-logo {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.1rem;
+      font-weight: 600; color: var(--cream); letter-spacing: 0.08em;
+    }
+    footer p { font-size: 0.78rem; }
+    footer .footer-tagline {
+      font-style: italic; color: rgba(254,250,224,0.45);
+      font-size: 0.78rem;
+    }
+
+    /* ——— BOTANICAL BACKGROUND DECORATIONS ——— */
+    .honest-section, .routine-section, .product-section,
+    .myths-section, .guide-section, .contact-section {
+      position: relative; overflow: hidden; isolation: isolate;
+    }
+    .section-decor {
+      position: absolute; inset: 0; pointer-events: none; z-index: -1;
+    }
+    .section-decor > svg {
+      position: absolute;
+      animation: floatDrift ease-in-out infinite alternate;
+      animation-duration: var(--dur, 9s);
+      animation-delay: var(--del, 0s);
+    }
+    @keyframes floatDrift {
+      from { transform: translateY(0) rotate(var(--r0, 0deg)); }
+      to   { transform: translateY(var(--ty, -16px)) rotate(var(--r1, 8deg)); }
+    }
+
+    /* ——— RESPONSIVE ——— */
+    @media (max-width: 960px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; text-align: center; gap: 3rem; }
+      .hero-ctas { justify-content: center; }
+      .profile-card { margin: 0 auto; }
+      .manifesto { padding: 2rem 1.5rem; gap: 2rem; }
+      .manifesto-sep { display: none; }
+      .honest-section { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 3rem; }
+      .routine-section { padding: 4rem 1.5rem; }
+      .routine-steps { grid-template-columns: 1fr; }
+      .step-connector { display: none; }
+      .product-section { padding: 4rem 1.5rem; }
+      .product-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .product-badge { right: 0.5rem; }
+      .myths-section { padding: 4rem 1.5rem; }
+      .myths-grid { grid-template-columns: 1fr; }
+      .guide-section { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 3rem; }
+      .coming-soon { padding: 4rem 1.5rem; }
+      .contact-section { padding: 4rem 1.5rem; }
+      footer { padding: 2rem 1.5rem; flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <svg width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="47" fill="none" stroke="#C9A44B" stroke-width="1.6"/>
+        <circle cx="50" cy="50" r="41" fill="none" stroke="#C9A44B" stroke-width="0.9" stroke-dasharray="2.2 2.8"/>
+        <line x1="50" y1="72" x2="50" y2="23" stroke="#4A7C5E" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="50" cy="20" r="3" fill="#D4876A"/>
+        <path d="M50 36 C46 30 38 27 34 29 C37 36 45 37 50 36Z" fill="#7EAB8A"/>
+        <path d="M50 36 C54 30 62 27 66 29 C63 36 55 37 50 36Z" fill="#7EAB8A"/>
+        <path d="M50 52 C42 43 30 41 25 44 C29 52 42 53 50 52Z" fill="#7EAB8A"/>
+        <path d="M50 52 C58 43 70 41 75 44 C71 52 58 53 50 52Z" fill="#7EAB8A"/>
+        <text x="50" y="71" font-family="Cormorant Garamond,Georgia,serif" font-size="20" font-weight="600" fill="#1B4332" text-anchor="middle">NV</text>
+      </svg>
+      <span class="nav-brand">NATURA VERA</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#routine">Routine</a></li>
+      <li><a href="#product">Product</a></li>
+      <li><a href="#guide">Guide — £1.99</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <!-- botanical illustrations — left side (booklet style) -->
+    <div class="hero-plant plant-left">
+      <svg width="90" height="100%" viewBox="0 0 90 900" preserveAspectRatio="xMidYMid meet" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- main stem -->
+        <path d="M45 900 C43 820 38 760 42 700 C46 640 52 600 48 540 C44 480 36 440 40 370 C44 300 54 260 50 190 C46 120 38 70 42 10" stroke="#6B9E7A" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+        <!-- leaf 1 - right, high -->
+        <path d="M42 120 C42 120 55 108 68 100 C78 94 84 96 84 96" stroke="#6B9E7A" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        <path d="M42 120 C52 112 66 104 84 96 C72 110 55 118 42 120Z" fill="#8BBF9A" opacity="0.7"/>
+        <!-- leaf 2 - left -->
+        <path d="M44 210 C44 210 28 198 14 194 C4 191 0 194 0 194" stroke="#6B9E7A" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        <path d="M44 210 C32 202 15 196 0 194 C10 207 28 212 44 210Z" fill="#8BBF9A" opacity="0.7"/>
+        <!-- leaf 3 - right -->
+        <path d="M46 310 C46 310 60 298 74 292 C83 288 88 291 88 291" stroke="#6B9E7A" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        <path d="M46 310 C58 300 72 293 88 291 C76 304 60 310 46 310Z" fill="#8BBF9A" opacity="0.7"/>
+        <!-- leaf 4 - left, large -->
+        <path d="M43 410 C43 410 25 395 10 388 C0 383 -4 386 -4 386" stroke="#6B9E7A" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        <path d="M43 410 C28 399 10 390 -4 386 C8 400 27 408 43 410Z" fill="#8BBF9A" opacity="0.7"/>
+        <!-- leaf 5 - right -->
+        <path d="M47 500 C47 500 62 488 76 482 C85 478 90 481 90 481" stroke="#6B9E7A" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        <path d="M47 500 C60 490 74 483 90 481 C78 494 62 500 47 500Z" fill="#8BBF9A" opacity="0.7"/>
+        <!-- leaf 6 - left -->
+        <path d="M42 595 C42 595 26 582 12 576 C2 572 -2 575 -2 575" stroke="#6B9E7A" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        <path d="M42 595 C27 584 11 577 -2 575 C10 588 27 594 42 595Z" fill="#8BBF9A" opacity="0.7"/>
+        <!-- leaf 7 - right -->
+        <path d="M46 685 C46 685 60 673 73 668 C82 664 87 667 87 667" stroke="#6B9E7A" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        <path d="M46 685 C58 675 71 668 87 667 C75 680 59 685 46 685Z" fill="#8BBF9A" opacity="0.7"/>
+        <!-- leaf 8 - left -->
+        <path d="M43 780 C43 780 27 768 13 763 C3 759 -1 762 -1 762" stroke="#6B9E7A" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        <path d="M43 780 C28 770 12 764 -1 762 C11 775 28 781 43 780Z" fill="#8BBF9A" opacity="0.7"/>
+      </svg>
+    </div>
+
+    <!-- botanical illustrations — right side (booklet style, mirrored) -->
+    <div class="hero-plant plant-right">
+      <svg width="90" height="100%" viewBox="0 0 90 900" preserveAspectRatio="xMidYMid meet" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- main stem -->
+        <path d="M45 900 C47 820 52 760 48 700 C44 640 38 600 42 540 C46 480 54 440 50 370 C46 300 36 260 40 190 C44 120 52 70 48 10" stroke="#6B9E7A" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+        <!-- leaf 1 - left, high -->
+        <path d="M48 120 C48 120 35 108 22 100 C12 94 6 96 6 96" stroke="#6B9E7A" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        <path d="M48 120 C38 112 24 104 6 96 C18 110 35 118 48 120Z" fill="#8BBF9A" opacity="0.7"/>
+        <!-- leaf 2 - right -->
+        <path d="M46 210 C46 210 62 198 76 194 C86 191 90 194 90 194" stroke="#6B9E7A" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        <path d="M46 210 C60 202 75 196 90 194 C80 207 62 212 46 210Z" fill="#8BBF9A" opacity="0.7"/>
+        <!-- leaf 3 - left -->
+        <path d="M44 310 C44 310 30 298 16 292 C7 288 2 291 2 291" stroke="#6B9E7A" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        <path d="M44 310 C32 300 18 293 2 291 C14 304 30 310 44 310Z" fill="#8BBF9A" opacity="0.7"/>
+        <!-- leaf 4 - right, large -->
+        <path d="M47 410 C47 410 65 395 80 388 C90 383 94 386 94 386" stroke="#6B9E7A" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        <path d="M47 410 C62 399 80 390 94 386 C82 400 63 408 47 410Z" fill="#8BBF9A" opacity="0.7"/>
+        <!-- leaf 5 - left -->
+        <path d="M43 500 C43 500 28 488 14 482 C5 478 0 481 0 481" stroke="#6B9E7A" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        <path d="M43 500 C30 490 16 483 0 481 C12 494 28 500 43 500Z" fill="#8BBF9A" opacity="0.7"/>
+        <!-- leaf 6 - right -->
+        <path d="M48 595 C48 595 64 582 78 576 C88 572 92 575 92 575" stroke="#6B9E7A" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        <path d="M48 595 C63 584 79 577 92 575 C80 588 63 594 48 595Z" fill="#8BBF9A" opacity="0.7"/>
+        <!-- leaf 7 - left -->
+        <path d="M44 685 C44 685 30 673 17 668 C8 664 3 667 3 667" stroke="#6B9E7A" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        <path d="M44 685 C32 675 19 668 3 667 C15 680 31 685 44 685Z" fill="#8BBF9A" opacity="0.7"/>
+        <!-- leaf 8 - right -->
+        <path d="M47 780 C47 780 63 768 77 763 C87 759 91 762 91 762" stroke="#6B9E7A" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        <path d="M47 780 C62 770 78 764 91 762 C79 775 62 781 47 780Z" fill="#8BBF9A" opacity="0.7"/>
+      </svg>
+    </div>
+
+    <div class="hero-text">
+      <span class="hero-tag">✦ Honest Natural Skincare</span>
+      <h1>Clean skin,<br><em>simple habits</em></h1>
+      <p class="hero-sub">Gentle facial cleansing with medical-grade silicone. No hype, no ten-step routines. Just clean, radiant skin.</p>
+      <div class="hero-ctas">
+        <a href="#product" class="btn-primary">Discover the brush →</a>
+        <a href="#guide" class="btn-secondary">Skincare guide — £1.99</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="profile-card">
+        <div class="profile-pic-wrapper">
+          <div class="profile-pic-ring"></div>
+          <img src="assets/profile_pic.jpg" alt="Natura Vera Official" class="profile-pic"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="profile-pic-fallback" style="display:none;">NV</div>
+        </div>
+        <p class="ig-handle">@naturavera_official</p>
+        <p class="profile-name">Natura Vera Official</p>
+        <p class="profile-bio">Honest skincare · No hype, just habits · Coming soon on Shopify</p>
+        <div class="profile-stats">
+          <div class="stat-item">
+            <span class="stat-num">🌿</span>
+            <span class="stat-label">Natural</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">💧</span>
+            <span class="stat-label">Gentle</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">✨</span>
+            <span class="stat-label">Radiant</span>
+          </div>
+        </div>
+        <a href="https://www.instagram.com/naturavera_official/" target="_blank" class="ig-link">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          Follow on Instagram
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MANIFESTO STRIP -->
+  <div class="manifesto">
+    <div class="manifesto-item">
+      <span>🌿</span>
+      <p>No hype. Just ingredients that actually work.</p>
+    </div>
+    <div class="manifesto-sep"></div>
+    <div class="manifesto-item">
+      <span>💡</span>
+      <p>Healthy skin is 90% habits, not products.</p>
+    </div>
+    <div class="manifesto-sep"></div>
+    <div class="manifesto-item">
+      <span>🤍</span>
+      <p>Gentle and consistent always wins.</p>
+    </div>
+  </div>
+
+  <!-- HONEST SECTION -->
+  <section class="honest-section" id="habits">
+    <div class="section-decor" aria-hidden="true">
+      <svg width="128" height="128" viewBox="0 0 110 110" style="top:-20px;right:-10px;--dur:14s;--del:-5s;--ty:-10px;--r0:4deg;--r1:-3deg;" xmlns="http://www.w3.org/2000/svg"><polygon points="55,39 69,47 69,63 55,71 41,63 41,47" fill="rgba(212,163,115,0.09)" stroke="rgba(212,163,115,0.24)" stroke-width="1.2"/><polygon points="83,39 97,47 97,63 83,71 69,63 69,47" fill="rgba(212,163,115,0.06)" stroke="rgba(212,163,115,0.20)" stroke-width="1.2"/><polygon points="27,39 41,47 41,63 27,71 13,63 13,47" fill="rgba(212,163,115,0.06)" stroke="rgba(212,163,115,0.20)" stroke-width="1.2"/><polygon points="69,15 83,23 83,39 69,47 55,39 55,23" fill="rgba(212,163,115,0.06)" stroke="rgba(212,163,115,0.20)" stroke-width="1.2"/><polygon points="41,15 55,23 55,39 41,47 27,39 27,23" fill="rgba(212,163,115,0.06)" stroke="rgba(212,163,115,0.20)" stroke-width="1.2"/><polygon points="69,63 83,71 83,87 69,95 55,87 55,71" fill="rgba(212,163,115,0.06)" stroke="rgba(212,163,115,0.20)" stroke-width="1.2"/><polygon points="41,63 55,71 55,87 41,95 27,87 27,71" fill="rgba(212,163,115,0.06)" stroke="rgba(212,163,115,0.20)" stroke-width="1.2"/></svg>
+      <svg width="52" height="88" viewBox="0 0 60 102" style="top:3%;left:3%;--dur:10s;--del:-2s;--ty:-12px;--r0:-15deg;--r1:-8deg;" xmlns="http://www.w3.org/2000/svg"><path d="M30 100 C29 82 27 65 28 48 C29 32 31 19 30 3" stroke="rgba(82,183,136,0.30)" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="M28 76 C21 69 13 67 7 69 C13 76 21 76 28 76Z" fill="rgba(82,183,136,0.19)"/><path d="M30 76 C37 69 45 67 51 69 C45 76 37 76 30 76Z" fill="rgba(82,183,136,0.19)"/><path d="M28 60 C21 53 12 51 6 53 C12 60 21 60 28 60Z" fill="rgba(82,183,136,0.19)"/><path d="M30 60 C37 53 46 51 52 53 C46 60 37 60 30 60Z" fill="rgba(82,183,136,0.19)"/><path d="M28 44 C22 37 14 35 8 37 C14 44 22 44 28 44Z" fill="rgba(82,183,136,0.17)"/><path d="M30 44 C36 37 44 35 50 37 C44 44 36 44 30 44Z" fill="rgba(82,183,136,0.17)"/><path d="M28 29 C22 23 15 21 10 23 C15 29 22 29 28 29Z" fill="rgba(82,183,136,0.15)"/><path d="M30 29 C36 23 43 21 48 23 C43 29 36 29 30 29Z" fill="rgba(82,183,136,0.15)"/><path d="M29 16 C24 11 18 9 14 11 C18 16 24 16 29 16Z" fill="rgba(82,183,136,0.12)"/><path d="M30 16 C35 11 41 9 45 11 C41 16 35 16 30 16Z" fill="rgba(82,183,136,0.12)"/></svg>
+      <svg width="44" height="69" viewBox="0 0 46 72" style="top:38%;left:5%;--dur:8s;--del:-1s;--ty:-14px;--r0:18deg;--r1:26deg;" xmlns="http://www.w3.org/2000/svg"><path d="M23 70 C10 58 3 38 6 20 C9 8 15 1 23 1 C31 1 37 8 40 20 C43 38 36 58 23 70Z" fill="rgba(212,163,115,0.23)"/><path d="M23 70 C22 50 21 30 23 1" stroke="rgba(180,130,80,0.17)" stroke-width="0.7" fill="none"/><path d="M17 44 C13 36 11 26 12 17" stroke="rgba(180,130,80,0.12)" stroke-width="0.5" fill="none" stroke-linecap="round"/><path d="M29 44 C33 36 35 26 34 17" stroke="rgba(180,130,80,0.12)" stroke-width="0.5" fill="none" stroke-linecap="round"/></svg>
+      <svg width="30" height="55" viewBox="0 0 38 70" style="top:8%;right:12%;--dur:9s;--del:-4s;--ty:-16px;--r0:38deg;--r1:46deg;" xmlns="http://www.w3.org/2000/svg"><path d="M19 68 C7 56 2 36 5 18 C8 6 13 0 19 0 C25 0 30 6 33 18 C36 36 31 56 19 68Z" fill="rgba(242,217,184,0.30)"/><path d="M19 68 C18 48 18 28 19 0" stroke="rgba(200,180,140,0.17)" stroke-width="0.6" fill="none"/></svg>
+      <svg width="88" height="85" viewBox="0 0 112 108" style="bottom:-8px;left:-10px;--dur:13s;--del:-8s;--ty:-8px;--r0:-5deg;--r1:2deg;" xmlns="http://www.w3.org/2000/svg"><polygon points="40,22 56,31 56,49 40,58 24,49 24,31" fill="rgba(212,163,115,0.08)" stroke="rgba(212,163,115,0.24)" stroke-width="1.3"/><polygon points="72,22 88,31 88,49 72,58 56,49 56,31" fill="rgba(212,163,115,0.08)" stroke="rgba(212,163,115,0.24)" stroke-width="1.3"/><polygon points="56,49 72,58 72,76 56,85 40,76 40,58" fill="rgba(212,163,115,0.08)" stroke="rgba(212,163,115,0.24)" stroke-width="1.3"/></svg>
+      <svg width="42" height="64" viewBox="0 0 54 82" style="bottom:8%;right:6%;--dur:11s;--del:-6s;--ty:-11px;--r0:-12deg;--r1:-5deg;" xmlns="http://www.w3.org/2000/svg"><path d="M27 80 C26 65 24 51 25 37 C26 24 28 13 27 3" stroke="rgba(74,185,130,0.27)" stroke-width="1.4" fill="none" stroke-linecap="round"/><path d="M25 58 C19 52 12 50 7 52 C12 58 19 58 25 58Z" fill="rgba(82,183,136,0.17)"/><path d="M27 58 C33 52 40 50 45 52 C40 58 33 58 27 58Z" fill="rgba(82,183,136,0.17)"/><path d="M25 43 C19 37 12 35 7 37 C12 43 19 43 25 43Z" fill="rgba(82,183,136,0.15)"/><path d="M27 43 C33 37 40 35 45 37 C40 43 33 43 27 43Z" fill="rgba(82,183,136,0.15)"/><path d="M25 29 C20 24 14 22 10 24 C14 29 20 29 25 29Z" fill="rgba(82,183,136,0.13)"/><path d="M27 29 C32 24 38 22 42 24 C38 29 32 29 27 29Z" fill="rgba(82,183,136,0.13)"/><path d="M26 16 C22 12 17 10 13 12 C17 16 22 16 26 16Z" fill="rgba(82,183,136,0.10)"/><path d="M27 16 C31 12 36 10 40 12 C36 16 31 16 27 16Z" fill="rgba(82,183,136,0.10)"/></svg>
+      <svg width="30" height="41" viewBox="0 0 50 68" style="bottom:18%;left:38%;--dur:9s;--del:-3s;--ty:-13px;--r0:-22deg;--r1:-14deg;" xmlns="http://www.w3.org/2000/svg"><path d="M22 66 C8 54 1 34 4 17 C7 5 14 0 22 1 C30 0 38 7 43 20 C47 36 40 55 22 66Z" fill="rgba(220,185,150,0.21)"/><path d="M22 66 C22 46 21 26 22 1" stroke="rgba(180,145,110,0.14)" stroke-width="0.6" fill="none"/></svg>
+      <svg width="70" height="72" viewBox="0 0 82 84" style="top:40%;right:4%;--dur:12s;--del:-10s;--ty:-9px;--r0:6deg;--r1:-2deg;" xmlns="http://www.w3.org/2000/svg"><polygon points="41,4 74,23 74,61 41,80 7,61 7,23" fill="rgba(212,163,115,0.07)" stroke="rgba(212,163,115,0.22)" stroke-width="1.5"/></svg>
+      <svg width="24" height="38" viewBox="0 0 46 72" style="top:5%;right:4%;--dur:7s;--del:-2s;--ty:-18px;--r0:55deg;--r1:63deg;" xmlns="http://www.w3.org/2000/svg"><path d="M23 70 C10 58 3 38 6 20 C9 8 15 1 23 1 C31 1 37 8 40 20 C43 38 36 58 23 70Z" fill="rgba(212,163,115,0.20)"/><path d="M23 70 C22 50 21 30 23 1" stroke="rgba(180,130,80,0.15)" stroke-width="0.7" fill="none"/></svg>
+      <svg width="38" height="57" viewBox="0 0 54 82" style="top:55%;right:2%;--dur:10s;--del:-7s;--ty:-10px;--r0:28deg;--r1:36deg;" xmlns="http://www.w3.org/2000/svg"><path d="M27 80 C26 65 24 51 25 37 C26 24 28 13 27 3" stroke="rgba(74,185,130,0.22)" stroke-width="1.4" fill="none" stroke-linecap="round"/><path d="M25 58 C19 52 12 50 7 52 C12 58 19 58 25 58Z" fill="rgba(82,183,136,0.15)"/><path d="M27 58 C33 52 40 50 45 52 C40 58 33 58 27 58Z" fill="rgba(82,183,136,0.15)"/><path d="M25 43 C19 37 12 35 7 37 C12 43 19 43 25 43Z" fill="rgba(82,183,136,0.13)"/><path d="M27 43 C33 37 40 35 45 37 C40 43 33 43 27 43Z" fill="rgba(82,183,136,0.13)"/><path d="M25 29 C20 24 14 22 10 24 C14 29 20 29 25 29Z" fill="rgba(82,183,136,0.11)"/><path d="M27 29 C32 24 38 22 42 24 C38 29 32 29 27 29Z" fill="rgba(82,183,136,0.11)"/><path d="M26 16 C22 12 17 10 13 12 C17 16 22 16 26 16Z" fill="rgba(82,183,136,0.09)"/><path d="M27 16 C31 12 36 10 40 12 C36 16 31 16 27 16Z" fill="rgba(82,183,136,0.09)"/></svg>
+    </div>
+    <div>
+      <p class="section-label">The Natura Vera Way</p>
+      <h2 class="section-title">Good skin starts<br>with good habits</h2>
+      <p class="section-body">Forget the ten-step routines. Most skin issues come down to a few simple daily habits — not the latest viral serum.</p>
+      <div class="golden-rule">
+        <strong>The golden rule</strong>
+        <p>Less is more. Simple habits, done consistently, beat any elaborate routine.</p>
+      </div>
+      <a href="#guide" class="btn-secondary" style="margin-top:1.5rem; display:inline-flex; color:var(--green-mid); border-color:var(--green-sage);">Get the full guide →</a>
+    </div>
+  </section>
+
+  <!-- ROUTINE SECTION -->
+  <section class="routine-section" id="routine">
+    <div class="section-decor" aria-hidden="true">
+      <svg width="56" height="95" viewBox="0 0 60 102" style="top:4%;left:2%;--dur:10s;--del:-1s;--ty:-12px;--r0:-12deg;--r1:-5deg;" xmlns="http://www.w3.org/2000/svg"><path d="M30 100 C29 82 27 65 28 48 C29 32 31 19 30 3" stroke="rgba(82,183,136,0.28)" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="M28 76 C21 69 13 67 7 69 C13 76 21 76 28 76Z" fill="rgba(82,183,136,0.18)"/><path d="M30 76 C37 69 45 67 51 69 C45 76 37 76 30 76Z" fill="rgba(82,183,136,0.18)"/><path d="M28 60 C21 53 12 51 6 53 C12 60 21 60 28 60Z" fill="rgba(82,183,136,0.18)"/><path d="M30 60 C37 53 46 51 52 53 C46 60 37 60 30 60Z" fill="rgba(82,183,136,0.18)"/><path d="M28 44 C22 37 14 35 8 37 C14 44 22 44 28 44Z" fill="rgba(82,183,136,0.16)"/><path d="M30 44 C36 37 44 35 50 37 C44 44 36 44 30 44Z" fill="rgba(82,183,136,0.16)"/><path d="M28 29 C22 23 15 21 10 23 C15 29 22 29 28 29Z" fill="rgba(82,183,136,0.14)"/><path d="M30 29 C36 23 43 21 48 23 C43 29 36 29 30 29Z" fill="rgba(82,183,136,0.14)"/><path d="M29 16 C24 11 18 9 14 11 C18 16 24 16 29 16Z" fill="rgba(82,183,136,0.11)"/><path d="M30 16 C35 11 41 9 45 11 C41 16 35 16 30 16Z" fill="rgba(82,183,136,0.11)"/></svg>
+      <svg width="48" height="75" viewBox="0 0 46 72" style="top:3%;right:4%;--dur:9s;--del:-6s;--ty:-16px;--r0:22deg;--r1:30deg;" xmlns="http://www.w3.org/2000/svg"><path d="M23 70 C10 58 3 38 6 20 C9 8 15 1 23 1 C31 1 37 8 40 20 C43 38 36 58 23 70Z" fill="rgba(212,163,115,0.22)"/><path d="M23 70 C22 50 21 30 23 1" stroke="rgba(180,130,80,0.17)" stroke-width="0.7" fill="none"/><path d="M17 44 C13 36 11 26 12 17" stroke="rgba(180,130,80,0.12)" stroke-width="0.5" fill="none" stroke-linecap="round"/><path d="M29 44 C33 36 35 26 34 17" stroke="rgba(180,130,80,0.12)" stroke-width="0.5" fill="none" stroke-linecap="round"/></svg>
+      <svg width="132" height="132" viewBox="0 0 110 110" style="bottom:-22px;left:-14px;--dur:15s;--del:-9s;--ty:-7px;--r0:-3deg;--r1:4deg;" xmlns="http://www.w3.org/2000/svg"><polygon points="55,39 69,47 69,63 55,71 41,63 41,47" fill="rgba(212,163,115,0.09)" stroke="rgba(212,163,115,0.23)" stroke-width="1.2"/><polygon points="83,39 97,47 97,63 83,71 69,63 69,47" fill="rgba(212,163,115,0.06)" stroke="rgba(212,163,115,0.19)" stroke-width="1.2"/><polygon points="27,39 41,47 41,63 27,71 13,63 13,47" fill="rgba(212,163,115,0.06)" stroke="rgba(212,163,115,0.19)" stroke-width="1.2"/><polygon points="69,15 83,23 83,39 69,47 55,39 55,23" fill="rgba(212,163,115,0.06)" stroke="rgba(212,163,115,0.19)" stroke-width="1.2"/><polygon points="41,15 55,23 55,39 41,47 27,39 27,23" fill="rgba(212,163,115,0.06)" stroke="rgba(212,163,115,0.19)" stroke-width="1.2"/><polygon points="69,63 83,71 83,87 69,95 55,87 55,71" fill="rgba(212,163,115,0.06)" stroke="rgba(212,163,115,0.19)" stroke-width="1.2"/><polygon points="41,63 55,71 55,87 41,95 27,87 27,71" fill="rgba(212,163,115,0.06)" stroke="rgba(212,163,115,0.19)" stroke-width="1.2"/></svg>
+      <svg width="34" height="53" viewBox="0 0 38 70" style="bottom:16%;right:4%;--dur:8s;--del:-3s;--ty:-14px;--r0:-25deg;--r1:-17deg;" xmlns="http://www.w3.org/2000/svg"><path d="M19 68 C7 56 2 36 5 18 C8 6 13 0 19 0 C25 0 30 6 33 18 C36 36 31 56 19 68Z" fill="rgba(242,217,184,0.28)"/><path d="M19 68 C18 48 18 28 19 0" stroke="rgba(200,180,140,0.16)" stroke-width="0.6" fill="none"/></svg>
+      <svg width="44" height="67" viewBox="0 0 54 82" style="top:46%;right:2%;--dur:11s;--del:-8s;--ty:-11px;--r0:10deg;--r1:18deg;" xmlns="http://www.w3.org/2000/svg"><path d="M27 80 C26 65 24 51 25 37 C26 24 28 13 27 3" stroke="rgba(74,185,130,0.24)" stroke-width="1.4" fill="none" stroke-linecap="round"/><path d="M25 58 C19 52 12 50 7 52 C12 58 19 58 25 58Z" fill="rgba(82,183,136,0.16)"/><path d="M27 58 C33 52 40 50 45 52 C40 58 33 58 27 58Z" fill="rgba(82,183,136,0.16)"/><path d="M25 43 C19 37 12 35 7 37 C12 43 19 43 25 43Z" fill="rgba(82,183,136,0.14)"/><path d="M27 43 C33 37 40 35 45 37 C40 43 33 43 27 43Z" fill="rgba(82,183,136,0.14)"/><path d="M25 29 C20 24 14 22 10 24 C14 29 20 29 25 29Z" fill="rgba(82,183,136,0.12)"/><path d="M27 29 C32 24 38 22 42 24 C38 29 32 29 27 29Z" fill="rgba(82,183,136,0.12)"/><path d="M26 16 C22 12 17 10 13 12 C17 16 22 16 26 16Z" fill="rgba(82,183,136,0.09)"/><path d="M27 16 C31 12 36 10 40 12 C36 16 31 16 27 16Z" fill="rgba(82,183,136,0.09)"/></svg>
+      <svg width="84" height="82" viewBox="0 0 112 108" style="top:5%;right:10%;--dur:12s;--del:-4s;--ty:-9px;--r0:8deg;--r1:-1deg;" xmlns="http://www.w3.org/2000/svg"><polygon points="40,22 56,31 56,49 40,58 24,49 24,31" fill="rgba(212,163,115,0.07)" stroke="rgba(212,163,115,0.22)" stroke-width="1.3"/><polygon points="72,22 88,31 88,49 72,58 56,49 56,31" fill="rgba(212,163,115,0.07)" stroke="rgba(212,163,115,0.22)" stroke-width="1.3"/><polygon points="56,49 72,58 72,76 56,85 40,76 40,58" fill="rgba(212,163,115,0.07)" stroke="rgba(212,163,115,0.22)" stroke-width="1.3"/></svg>
+      <svg width="32" height="44" viewBox="0 0 50 68" style="bottom:10%;right:8%;--dur:9s;--del:-5s;--ty:-15px;--r0:-18deg;--r1:-10deg;" xmlns="http://www.w3.org/2000/svg"><path d="M22 66 C8 54 1 34 4 17 C7 5 14 0 22 1 C30 0 38 7 43 20 C47 36 40 55 22 66Z" fill="rgba(220,185,150,0.20)"/><path d="M22 66 C22 46 21 26 22 1" stroke="rgba(180,145,110,0.13)" stroke-width="0.6" fill="none"/></svg>
+      <svg width="22" height="35" viewBox="0 0 46 72" style="top:8%;left:8%;--dur:7s;--del:-2s;--ty:-17px;--r0:-40deg;--r1:-32deg;" xmlns="http://www.w3.org/2000/svg"><path d="M23 70 C10 58 3 38 6 20 C9 8 15 1 23 1 C31 1 37 8 40 20 C43 38 36 58 23 70Z" fill="rgba(212,163,115,0.18)"/><path d="M23 70 C22 50 21 30 23 1" stroke="rgba(180,130,80,0.14)" stroke-width="0.7" fill="none"/></svg>
+      <svg width="62" height="64" viewBox="0 0 82 84" style="bottom:5%;right:12%;--dur:13s;--del:-11s;--ty:-8px;--r0:3deg;--r1:-5deg;" xmlns="http://www.w3.org/2000/svg"><polygon points="41,4 74,23 74,61 41,80 7,61 7,23" fill="rgba(212,163,115,0.07)" stroke="rgba(212,163,115,0.21)" stroke-width="1.5"/></svg>
+      <svg width="50" height="86" viewBox="0 0 60 102" style="bottom:3%;right:1%;--dur:11s;--del:-7s;--ty:-10px;--r0:20deg;--r1:28deg;" xmlns="http://www.w3.org/2000/svg"><path d="M30 100 C29 82 27 65 28 48 C29 32 31 19 30 3" stroke="rgba(82,183,136,0.22)" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="M28 76 C21 69 13 67 7 69 C13 76 21 76 28 76Z" fill="rgba(82,183,136,0.15)"/><path d="M30 76 C37 69 45 67 51 69 C45 76 37 76 30 76Z" fill="rgba(82,183,136,0.15)"/><path d="M28 60 C21 53 12 51 6 53 C12 60 21 60 28 60Z" fill="rgba(82,183,136,0.15)"/><path d="M30 60 C37 53 46 51 52 53 C46 60 37 60 30 60Z" fill="rgba(82,183,136,0.15)"/><path d="M28 44 C22 37 14 35 8 37 C14 44 22 44 28 44Z" fill="rgba(82,183,136,0.13)"/><path d="M30 44 C36 37 44 35 50 37 C44 44 36 44 30 44Z" fill="rgba(82,183,136,0.13)"/><path d="M28 29 C22 23 15 21 10 23 C15 29 22 29 28 29Z" fill="rgba(82,183,136,0.11)"/><path d="M30 29 C36 23 43 21 48 23 C43 29 36 29 30 29Z" fill="rgba(82,183,136,0.11)"/><path d="M29 16 C24 11 18 9 14 11 C18 16 24 16 29 16Z" fill="rgba(82,183,136,0.09)"/><path d="M30 16 C35 11 41 9 45 11 C41 16 35 16 30 16Z" fill="rgba(82,183,136,0.09)"/></svg>
+    </div>
+    <div class="routine-header">
+      <p class="section-label">The 3-Step Routine</p>
+      <h2 class="section-title">No fuss. Morning and night.</h2>
+      <p>Three steps, twice a day. That's all your skin needs.</p>
+    </div>
+
+    <div class="routine-steps">
+      <div class="routine-step">
+        <div class="step-num">1</div>
+        <span class="step-icon">🫧</span>
+        <h4>Cleanse</h4>
+        <div class="step-connector">→</div>
+      </div>
+      <div class="routine-step">
+        <div class="step-num">2</div>
+        <span class="step-icon">🌸</span>
+        <h4>Calm or Treat</h4>
+        <div class="step-connector">→</div>
+      </div>
+      <div class="routine-step">
+        <div class="step-num">3</div>
+        <span class="step-icon">☀️</span>
+        <h4>Moisturise & Protect</h4>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:2rem;">
+      <a href="#guide" class="btn-primary">See the full routine in the guide →</a>
+    </div>
+  </section>
+
+  <!-- PRODUCT -->
+  <section class="product-section" id="product">
+    <div class="section-decor" aria-hidden="true">
+      <svg width="54" height="75" viewBox="0 0 46 72" style="top:7%;right:4%;--dur:9s;--del:-2s;--ty:-15px;--r0:-32deg;--r1:-24deg;" xmlns="http://www.w3.org/2000/svg"><path d="M23 70 C10 58 3 38 6 20 C9 8 15 1 23 1 C31 1 37 8 40 20 C43 38 36 58 23 70Z" fill="rgba(212,163,115,0.23)"/><path d="M23 70 C22 50 21 30 23 1" stroke="rgba(180,130,80,0.17)" stroke-width="0.7" fill="none"/><path d="M17 44 C13 36 11 26 12 17" stroke="rgba(180,130,80,0.12)" stroke-width="0.5" fill="none" stroke-linecap="round"/><path d="M29 44 C33 36 35 26 34 17" stroke="rgba(180,130,80,0.12)" stroke-width="0.5" fill="none" stroke-linecap="round"/></svg>
+      <svg width="125" height="125" viewBox="0 0 110 110" style="top:-16px;left:-16px;--dur:13s;--del:-5s;--ty:-9px;--r0:3deg;--r1:-4deg;" xmlns="http://www.w3.org/2000/svg"><polygon points="55,39 69,47 69,63 55,71 41,63 41,47" fill="rgba(212,163,115,0.08)" stroke="rgba(212,163,115,0.22)" stroke-width="1.2"/><polygon points="83,39 97,47 97,63 83,71 69,63 69,47" fill="rgba(212,163,115,0.05)" stroke="rgba(212,163,115,0.18)" stroke-width="1.2"/><polygon points="27,39 41,47 41,63 27,71 13,63 13,47" fill="rgba(212,163,115,0.05)" stroke="rgba(212,163,115,0.18)" stroke-width="1.2"/><polygon points="69,15 83,23 83,39 69,47 55,39 55,23" fill="rgba(212,163,115,0.05)" stroke="rgba(212,163,115,0.18)" stroke-width="1.2"/><polygon points="41,15 55,23 55,39 41,47 27,39 27,23" fill="rgba(212,163,115,0.05)" stroke="rgba(212,163,115,0.18)" stroke-width="1.2"/><polygon points="69,63 83,71 83,87 69,95 55,87 55,71" fill="rgba(212,163,115,0.05)" stroke="rgba(212,163,115,0.18)" stroke-width="1.2"/><polygon points="41,63 55,71 55,87 41,95 27,87 27,71" fill="rgba(212,163,115,0.05)" stroke="rgba(212,163,115,0.18)" stroke-width="1.2"/></svg>
+      <svg width="54" height="92" viewBox="0 0 60 102" style="bottom:8%;right:5%;--dur:10s;--del:-7s;--ty:-12px;--r0:-18deg;--r1:-11deg;" xmlns="http://www.w3.org/2000/svg"><path d="M30 100 C29 82 27 65 28 48 C29 32 31 19 30 3" stroke="rgba(82,183,136,0.28)" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="M28 76 C21 69 13 67 7 69 C13 76 21 76 28 76Z" fill="rgba(82,183,136,0.18)"/><path d="M30 76 C37 69 45 67 51 69 C45 76 37 76 30 76Z" fill="rgba(82,183,136,0.18)"/><path d="M28 60 C21 53 12 51 6 53 C12 60 21 60 28 60Z" fill="rgba(82,183,136,0.18)"/><path d="M30 60 C37 53 46 51 52 53 C46 60 37 60 30 60Z" fill="rgba(82,183,136,0.18)"/><path d="M28 44 C22 37 14 35 8 37 C14 44 22 44 28 44Z" fill="rgba(82,183,136,0.16)"/><path d="M30 44 C36 37 44 35 50 37 C44 44 36 44 30 44Z" fill="rgba(82,183,136,0.16)"/><path d="M28 29 C22 23 15 21 10 23 C15 29 22 29 28 29Z" fill="rgba(82,183,136,0.14)"/><path d="M30 29 C36 23 43 21 48 23 C43 29 36 29 30 29Z" fill="rgba(82,183,136,0.14)"/><path d="M29 16 C24 11 18 9 14 11 C18 16 24 16 29 16Z" fill="rgba(82,183,136,0.11)"/><path d="M30 16 C35 11 41 9 45 11 C41 16 35 16 30 16Z" fill="rgba(82,183,136,0.11)"/></svg>
+      <svg width="40" height="62" viewBox="0 0 38 70" style="bottom:5%;left:7%;--dur:8s;--del:-4s;--ty:-17px;--r0:32deg;--r1:40deg;" xmlns="http://www.w3.org/2000/svg"><path d="M19 68 C7 56 2 36 5 18 C8 6 13 0 19 0 C25 0 30 6 33 18 C36 36 31 56 19 68Z" fill="rgba(242,217,184,0.29)"/><path d="M19 68 C18 48 18 28 19 0" stroke="rgba(200,180,140,0.17)" stroke-width="0.6" fill="none"/></svg>
+      <svg width="84" height="82" viewBox="0 0 112 108" style="top:36%;left:2%;--dur:12s;--del:-9s;--ty:-9px;--r0:-6deg;--r1:1deg;" xmlns="http://www.w3.org/2000/svg"><polygon points="40,22 56,31 56,49 40,58 24,49 24,31" fill="rgba(212,163,115,0.07)" stroke="rgba(212,163,115,0.21)" stroke-width="1.3"/><polygon points="72,22 88,31 88,49 72,58 56,49 56,31" fill="rgba(212,163,115,0.07)" stroke="rgba(212,163,115,0.21)" stroke-width="1.3"/><polygon points="56,49 72,58 72,76 56,85 40,76 40,58" fill="rgba(212,163,115,0.07)" stroke="rgba(212,163,115,0.21)" stroke-width="1.3"/></svg>
+      <svg width="44" height="67" viewBox="0 0 54 82" style="top:5%;right:12%;--dur:11s;--del:-3s;--ty:-11px;--r0:25deg;--r1:33deg;" xmlns="http://www.w3.org/2000/svg"><path d="M27 80 C26 65 24 51 25 37 C26 24 28 13 27 3" stroke="rgba(74,185,130,0.26)" stroke-width="1.4" fill="none" stroke-linecap="round"/><path d="M25 58 C19 52 12 50 7 52 C12 58 19 58 25 58Z" fill="rgba(82,183,136,0.16)"/><path d="M27 58 C33 52 40 50 45 52 C40 58 33 58 27 58Z" fill="rgba(82,183,136,0.16)"/><path d="M25 43 C19 37 12 35 7 37 C12 43 19 43 25 43Z" fill="rgba(82,183,136,0.14)"/><path d="M27 43 C33 37 40 35 45 37 C40 43 33 43 27 43Z" fill="rgba(82,183,136,0.14)"/><path d="M25 29 C20 24 14 22 10 24 C14 29 20 29 25 29Z" fill="rgba(82,183,136,0.12)"/><path d="M27 29 C32 24 38 22 42 24 C38 29 32 29 27 29Z" fill="rgba(82,183,136,0.12)"/><path d="M26 16 C22 12 17 10 13 12 C17 16 22 16 26 16Z" fill="rgba(82,183,136,0.09)"/><path d="M27 16 C31 12 36 10 40 12 C36 16 31 16 27 16Z" fill="rgba(82,183,136,0.09)"/></svg>
+      <svg width="34" height="46" viewBox="0 0 50 68" style="top:50%;right:2%;--dur:9s;--del:-6s;--ty:-13px;--r0:15deg;--r1:23deg;" xmlns="http://www.w3.org/2000/svg"><path d="M22 66 C8 54 1 34 4 17 C7 5 14 0 22 1 C30 0 38 7 43 20 C47 36 40 55 22 66Z" fill="rgba(220,185,150,0.20)"/><path d="M22 66 C22 46 21 26 22 1" stroke="rgba(180,145,110,0.13)" stroke-width="0.6" fill="none"/></svg>
+      <svg width="58" height="60" viewBox="0 0 82 84" style="bottom:3%;right:10%;--dur:14s;--del:-11s;--ty:-8px;--r0:8deg;--r1:-2deg;" xmlns="http://www.w3.org/2000/svg"><polygon points="41,4 74,23 74,61 41,80 7,61 7,23" fill="rgba(212,163,115,0.07)" stroke="rgba(212,163,115,0.20)" stroke-width="1.5"/></svg>
+      <svg width="24" height="38" viewBox="0 0 46 72" style="bottom:20%;right:3%;--dur:7s;--del:-4s;--ty:-18px;--r0:-48deg;--r1:-40deg;" xmlns="http://www.w3.org/2000/svg"><path d="M23 70 C10 58 3 38 6 20 C9 8 15 1 23 1 C31 1 37 8 40 20 C43 38 36 58 23 70Z" fill="rgba(212,163,115,0.19)"/><path d="M23 70 C22 50 21 30 23 1" stroke="rgba(180,130,80,0.14)" stroke-width="0.7" fill="none"/></svg>
+    </div>
+    <p class="section-label">Our Product</p>
+    <h2 class="section-title">The brush that makes<br>step one effortless</h2>
+
+    <div class="product-grid">
+      <div class="product-visual">
+        <div class="product-img-wrapper">
+          <span class="product-icon">🧖‍♀️</span>
+        </div>
+        <div class="product-badge">
+          <span class="badge-text">Coming Soon</span>
+          <span class="badge-value">On Shopify</span>
+        </div>
+      </div>
+
+      <div class="product-info">
+        <h3>Natura Vera Silicone<br>Facial Cleansing Brush</h3>
+        <p class="product-desc">Medical-grade silicone. Gentle on skin, tough on impurities. No irritation — just clean, radiant skin every morning and night.</p>
+        <ul class="features-list">
+          <li><span class="feature-dot"></span><span>Medical-grade silicone — safe for sensitive skin</span></li>
+          <li><span class="feature-dot"></span><span>2× more effective than hands alone</span></li>
+          <li><span class="feature-dot"></span><span>100% waterproof and easy to clean</span></li>
+        </ul>
+        <a href="#notify" class="btn-primary" onclick="document.querySelector('.coming-soon').scrollIntoView({behavior:'smooth'}); return false;">Notify me when it's live →</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FREE GUIDE -->
+  <section class="guide-section" id="guide">
+    <div class="section-decor" aria-hidden="true">
+      <svg width="54" height="75" viewBox="0 0 46 72" style="top:6%;left:3%;--dur:9s;--del:-1s;--ty:-14px;--r0:-12deg;--r1:-4deg;" xmlns="http://www.w3.org/2000/svg"><path d="M23 70 C10 58 3 38 6 20 C9 8 15 1 23 1 C31 1 37 8 40 20 C43 38 36 58 23 70Z" fill="rgba(212,163,115,0.23)"/><path d="M23 70 C22 50 21 30 23 1" stroke="rgba(180,130,80,0.17)" stroke-width="0.7" fill="none"/><path d="M17 44 C13 36 11 26 12 17" stroke="rgba(180,130,80,0.12)" stroke-width="0.5" fill="none" stroke-linecap="round"/><path d="M29 44 C33 36 35 26 34 17" stroke="rgba(180,130,80,0.12)" stroke-width="0.5" fill="none" stroke-linecap="round"/></svg>
+      <svg width="50" height="85" viewBox="0 0 60 102" style="top:8%;right:4%;--dur:11s;--del:-5s;--ty:-12px;--r0:18deg;--r1:26deg;" xmlns="http://www.w3.org/2000/svg"><path d="M30 100 C29 82 27 65 28 48 C29 32 31 19 30 3" stroke="rgba(82,183,136,0.27)" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="M28 76 C21 69 13 67 7 69 C13 76 21 76 28 76Z" fill="rgba(82,183,136,0.17)"/><path d="M30 76 C37 69 45 67 51 69 C45 76 37 76 30 76Z" fill="rgba(82,183,136,0.17)"/><path d="M28 60 C21 53 12 51 6 53 C12 60 21 60 28 60Z" fill="rgba(82,183,136,0.17)"/><path d="M30 60 C37 53 46 51 52 53 C46 60 37 60 30 60Z" fill="rgba(82,183,136,0.17)"/><path d="M28 44 C22 37 14 35 8 37 C14 44 22 44 28 44Z" fill="rgba(82,183,136,0.15)"/><path d="M30 44 C36 37 44 35 50 37 C44 44 36 44 30 44Z" fill="rgba(82,183,136,0.15)"/><path d="M28 29 C22 23 15 21 10 23 C15 29 22 29 28 29Z" fill="rgba(82,183,136,0.13)"/><path d="M30 29 C36 23 43 21 48 23 C43 29 36 29 30 29Z" fill="rgba(82,183,136,0.13)"/><path d="M29 16 C24 11 18 9 14 11 C18 16 24 16 29 16Z" fill="rgba(82,183,136,0.10)"/><path d="M30 16 C35 11 41 9 45 11 C41 16 35 16 30 16Z" fill="rgba(82,183,136,0.10)"/></svg>
+      <svg width="130" height="130" viewBox="0 0 110 110" style="bottom:-20px;left:-15px;--dur:14s;--del:-8s;--ty:-8px;--r0:2deg;--r1:-5deg;" xmlns="http://www.w3.org/2000/svg"><polygon points="55,39 69,47 69,63 55,71 41,63 41,47" fill="rgba(212,163,115,0.09)" stroke="rgba(212,163,115,0.23)" stroke-width="1.2"/><polygon points="83,39 97,47 97,63 83,71 69,63 69,47" fill="rgba(212,163,115,0.06)" stroke="rgba(212,163,115,0.19)" stroke-width="1.2"/><polygon points="27,39 41,47 41,63 27,71 13,63 13,47" fill="rgba(212,163,115,0.06)" stroke="rgba(212,163,115,0.19)" stroke-width="1.2"/><polygon points="69,15 83,23 83,39 69,47 55,39 55,23" fill="rgba(212,163,115,0.06)" stroke="rgba(212,163,115,0.19)" stroke-width="1.2"/><polygon points="41,15 55,23 55,39 41,47 27,39 27,23" fill="rgba(212,163,115,0.06)" stroke="rgba(212,163,115,0.19)" stroke-width="1.2"/><polygon points="69,63 83,71 83,87 69,95 55,87 55,71" fill="rgba(212,163,115,0.06)" stroke="rgba(212,163,115,0.19)" stroke-width="1.2"/><polygon points="41,63 55,71 55,87 41,95 27,87 27,71" fill="rgba(212,163,115,0.06)" stroke="rgba(212,163,115,0.19)" stroke-width="1.2"/></svg>
+      <svg width="42" height="65" viewBox="0 0 38 70" style="bottom:11%;right:5%;--dur:8s;--del:-3s;--ty:-16px;--r0:-30deg;--r1:-22deg;" xmlns="http://www.w3.org/2000/svg"><path d="M19 68 C7 56 2 36 5 18 C8 6 13 0 19 0 C25 0 30 6 33 18 C36 36 31 56 19 68Z" fill="rgba(242,217,184,0.29)"/><path d="M19 68 C18 48 18 28 19 0" stroke="rgba(200,180,140,0.17)" stroke-width="0.6" fill="none"/></svg>
+      <svg width="82" height="79" viewBox="0 0 112 108" style="top:45%;left:44%;--dur:12s;--del:-6s;--ty:-10px;--r0:10deg;--r1:18deg;" xmlns="http://www.w3.org/2000/svg"><polygon points="40,22 56,31 56,49 40,58 24,49 24,31" fill="rgba(212,163,115,0.06)" stroke="rgba(212,163,115,0.18)" stroke-width="1.3"/><polygon points="72,22 88,31 88,49 72,58 56,49 56,31" fill="rgba(212,163,115,0.06)" stroke="rgba(212,163,115,0.18)" stroke-width="1.3"/><polygon points="56,49 72,58 72,76 56,85 40,76 40,58" fill="rgba(212,163,115,0.06)" stroke="rgba(212,163,115,0.18)" stroke-width="1.3"/></svg>
+      <svg width="40" height="62" viewBox="0 0 54 82" style="top:40%;left:4%;--dur:10s;--del:-4s;--ty:-12px;--r0:-8deg;--r1:-1deg;" xmlns="http://www.w3.org/2000/svg"><path d="M27 80 C26 65 24 51 25 37 C26 24 28 13 27 3" stroke="rgba(74,185,130,0.24)" stroke-width="1.4" fill="none" stroke-linecap="round"/><path d="M25 58 C19 52 12 50 7 52 C12 58 19 58 25 58Z" fill="rgba(82,183,136,0.16)"/><path d="M27 58 C33 52 40 50 45 52 C40 58 33 58 27 58Z" fill="rgba(82,183,136,0.16)"/><path d="M25 43 C19 37 12 35 7 37 C12 43 19 43 25 43Z" fill="rgba(82,183,136,0.14)"/><path d="M27 43 C33 37 40 35 45 37 C40 43 33 43 27 43Z" fill="rgba(82,183,136,0.14)"/><path d="M25 29 C20 24 14 22 10 24 C14 29 20 29 25 29Z" fill="rgba(82,183,136,0.12)"/><path d="M27 29 C32 24 38 22 42 24 C38 29 32 29 27 29Z" fill="rgba(82,183,136,0.12)"/><path d="M26 16 C22 12 17 10 13 12 C17 16 22 16 26 16Z" fill="rgba(82,183,136,0.09)"/><path d="M27 16 C31 12 36 10 40 12 C36 16 31 16 27 16Z" fill="rgba(82,183,136,0.09)"/></svg>
+      <svg width="32" height="43" viewBox="0 0 50 68" style="top:14%;right:10%;--dur:8s;--del:-7s;--ty:-14px;--r0:42deg;--r1:50deg;" xmlns="http://www.w3.org/2000/svg"><path d="M22 66 C8 54 1 34 4 17 C7 5 14 0 22 1 C30 0 38 7 43 20 C47 36 40 55 22 66Z" fill="rgba(220,185,150,0.20)"/><path d="M22 66 C22 46 21 26 22 1" stroke="rgba(180,145,110,0.13)" stroke-width="0.6" fill="none"/></svg>
+      <svg width="68" height="70" viewBox="0 0 82 84" style="top:3%;right:10%;--dur:13s;--del:-2s;--ty:-9px;--r0:-7deg;--r1:1deg;" xmlns="http://www.w3.org/2000/svg"><polygon points="41,4 74,23 74,61 41,80 7,61 7,23" fill="rgba(212,163,115,0.07)" stroke="rgba(212,163,115,0.21)" stroke-width="1.5"/></svg>
+      <svg width="26" height="40" viewBox="0 0 46 72" style="bottom:22%;right:2%;--dur:7s;--del:-3s;--ty:-18px;--r0:60deg;--r1:68deg;" xmlns="http://www.w3.org/2000/svg"><path d="M23 70 C10 58 3 38 6 20 C9 8 15 1 23 1 C31 1 37 8 40 20 C43 38 36 58 23 70Z" fill="rgba(212,163,115,0.19)"/><path d="M23 70 C22 50 21 30 23 1" stroke="rgba(180,130,80,0.14)" stroke-width="0.7" fill="none"/></svg>
+    </div>
+    <div class="guide-cover">
+      <div class="guide-cover-inner">
+        <span class="guide-tag">✦ Just £1.99</span>
+        <h3>Clean Skin,<br><em>Simple Habits</em></h3>
+        <p>An honest guide to facial hygiene and the natural ingredients that are actually worth it.</p>
+        <svg width="64" height="64" viewBox="0 0 100 100" style="display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="47" fill="none" stroke="rgba(149,213,178,0.55)" stroke-width="1.6"/>
+          <circle cx="50" cy="50" r="41" fill="none" stroke="rgba(149,213,178,0.38)" stroke-width="0.9" stroke-dasharray="2.2 2.8"/>
+          <line x1="50" y1="72" x2="50" y2="23" stroke="rgba(149,213,178,0.72)" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="50" cy="20" r="3" fill="rgba(212,163,115,0.88)"/>
+          <path d="M50 36 C46 30 38 27 34 29 C37 36 45 37 50 36Z" fill="rgba(149,213,178,0.65)"/>
+          <path d="M50 36 C54 30 62 27 66 29 C63 36 55 37 50 36Z" fill="rgba(149,213,178,0.65)"/>
+          <path d="M50 52 C42 43 30 41 25 44 C29 52 42 53 50 52Z" fill="rgba(149,213,178,0.65)"/>
+          <path d="M50 52 C58 43 70 41 75 44 C71 52 58 53 50 52Z" fill="rgba(149,213,178,0.65)"/>
+          <text x="50" y="71" font-family="Cormorant Garamond,Georgia,serif" font-size="20" font-weight="600" fill="rgba(254,250,224,0.92)" text-anchor="middle">NV</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="guide-info">
+      <p class="section-label">The Natura Vera Guide</p>
+      <h2 class="section-title">Everything you need.<br>8 honest pages.</h2>
+      <p>The habits, the ingredients that actually work, the myths to avoid, and your full 3-step routine — all in one honest guide. Just £1.99. No subscription, no upsell, no fuss.</p>
+      <ul class="guide-contents">
+        <li>8 hygiene habits that make the real difference</li>
+        <li>Natural ingredients worth using (and how)</li>
+        <li>What to NEVER put on your face — and why</li>
+        <li>Your complete 3-step daily routine</li>
+      </ul>
+      <!-- TODO: replace # with your payment link (Gumroad, Stripe, etc.) -->
+      <a href="#" target="_blank" class="btn-primary">Get the guide — £1.99 →</a>
+    </div>
+  </section>
+
+  <!-- COMING SOON -->
+  <section class="coming-soon" id="notify">
+    <div class="coming-soon-inner">
+      <span class="coming-soon-tag">✦ Coming Soon</span>
+      <h2>Our store opens<br>very soon</h2>
+      <p>Be the first to know when we launch. Leave your email and we'll send you an exclusive early-access notification.</p>
+      <form class="notify-form" onsubmit="handleNotify(event)">
+        <input type="email" placeholder="your@email.com" required>
+        <button type="submit">Notify Me</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <div class="section-decor" aria-hidden="true">
+      <svg width="124" height="124" viewBox="0 0 110 110" style="top:-18px;right:-12px;--dur:13s;--del:-4s;--ty:-10px;--r0:5deg;--r1:-2deg;" xmlns="http://www.w3.org/2000/svg"><polygon points="55,39 69,47 69,63 55,71 41,63 41,47" fill="rgba(212,163,115,0.09)" stroke="rgba(212,163,115,0.24)" stroke-width="1.2"/><polygon points="83,39 97,47 97,63 83,71 69,63 69,47" fill="rgba(212,163,115,0.06)" stroke="rgba(212,163,115,0.20)" stroke-width="1.2"/><polygon points="27,39 41,47 41,63 27,71 13,63 13,47" fill="rgba(212,163,115,0.06)" stroke="rgba(212,163,115,0.20)" stroke-width="1.2"/><polygon points="69,15 83,23 83,39 69,47 55,39 55,23" fill="rgba(212,163,115,0.06)" stroke="rgba(212,163,115,0.20)" stroke-width="1.2"/><polygon points="41,15 55,23 55,39 41,47 27,39 27,23" fill="rgba(212,163,115,0.06)" stroke="rgba(212,163,115,0.20)" stroke-width="1.2"/><polygon points="69,63 83,71 83,87 69,95 55,87 55,71" fill="rgba(212,163,115,0.06)" stroke="rgba(212,163,115,0.20)" stroke-width="1.2"/><polygon points="41,63 55,71 55,87 41,95 27,87 27,71" fill="rgba(212,163,115,0.06)" stroke="rgba(212,163,115,0.20)" stroke-width="1.2"/></svg>
+      <svg width="54" height="92" viewBox="0 0 60 102" style="top:6%;left:3%;--dur:10s;--del:-7s;--ty:-12px;--r0:-16deg;--r1:-9deg;" xmlns="http://www.w3.org/2000/svg"><path d="M30 100 C29 82 27 65 28 48 C29 32 31 19 30 3" stroke="rgba(82,183,136,0.27)" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="M28 76 C21 69 13 67 7 69 C13 76 21 76 28 76Z" fill="rgba(82,183,136,0.17)"/><path d="M30 76 C37 69 45 67 51 69 C45 76 37 76 30 76Z" fill="rgba(82,183,136,0.17)"/><path d="M28 60 C21 53 12 51 6 53 C12 60 21 60 28 60Z" fill="rgba(82,183,136,0.17)"/><path d="M30 60 C37 53 46 51 52 53 C46 60 37 60 30 60Z" fill="rgba(82,183,136,0.17)"/><path d="M28 44 C22 37 14 35 8 37 C14 44 22 44 28 44Z" fill="rgba(82,183,136,0.15)"/><path d="M30 44 C36 37 44 35 50 37 C44 44 36 44 30 44Z" fill="rgba(82,183,136,0.15)"/><path d="M28 29 C22 23 15 21 10 23 C15 29 22 29 28 29Z" fill="rgba(82,183,136,0.13)"/><path d="M30 29 C36 23 43 21 48 23 C43 29 36 29 30 29Z" fill="rgba(82,183,136,0.13)"/><path d="M29 16 C24 11 18 9 14 11 C18 16 24 16 29 16Z" fill="rgba(82,183,136,0.10)"/><path d="M30 16 C35 11 41 9 45 11 C41 16 35 16 30 16Z" fill="rgba(82,183,136,0.10)"/></svg>
+      <svg width="48" height="75" viewBox="0 0 46 72" style="bottom:8%;right:7%;--dur:9s;--del:-2s;--ty:-15px;--r0:20deg;--r1:28deg;" xmlns="http://www.w3.org/2000/svg"><path d="M23 70 C10 58 3 38 6 20 C9 8 15 1 23 1 C31 1 37 8 40 20 C43 38 36 58 23 70Z" fill="rgba(212,163,115,0.22)"/><path d="M23 70 C22 50 21 30 23 1" stroke="rgba(180,130,80,0.17)" stroke-width="0.7" fill="none"/><path d="M17 44 C13 36 11 26 12 17" stroke="rgba(180,130,80,0.12)" stroke-width="0.5" fill="none" stroke-linecap="round"/><path d="M29 44 C33 36 35 26 34 17" stroke="rgba(180,130,80,0.12)" stroke-width="0.5" fill="none" stroke-linecap="round"/></svg>
+      <svg width="38" height="59" viewBox="0 0 38 70" style="bottom:20%;left:5%;--dur:11s;--del:-9s;--ty:-13px;--r0:-10deg;--r1:-2deg;" xmlns="http://www.w3.org/2000/svg"><path d="M19 68 C7 56 2 36 5 18 C8 6 13 0 19 0 C25 0 30 6 33 18 C36 36 31 56 19 68Z" fill="rgba(242,217,184,0.29)"/><path d="M19 68 C18 48 18 28 19 0" stroke="rgba(200,180,140,0.16)" stroke-width="0.6" fill="none"/></svg>
+      <svg width="80" height="78" viewBox="0 0 112 108" style="top:30%;left:3%;--dur:12s;--del:-5s;--ty:-9px;--r0:-4deg;--r1:3deg;" xmlns="http://www.w3.org/2000/svg"><polygon points="40,22 56,31 56,49 40,58 24,49 24,31" fill="rgba(212,163,115,0.07)" stroke="rgba(212,163,115,0.21)" stroke-width="1.3"/><polygon points="72,22 88,31 88,49 72,58 56,49 56,31" fill="rgba(212,163,115,0.07)" stroke="rgba(212,163,115,0.21)" stroke-width="1.3"/><polygon points="56,49 72,58 72,76 56,85 40,76 40,58" fill="rgba(212,163,115,0.07)" stroke="rgba(212,163,115,0.21)" stroke-width="1.3"/></svg>
+      <svg width="42" height="64" viewBox="0 0 54 82" style="top:12%;right:10%;--dur:10s;--del:-6s;--ty:-11px;--r0:30deg;--r1:38deg;" xmlns="http://www.w3.org/2000/svg"><path d="M27 80 C26 65 24 51 25 37 C26 24 28 13 27 3" stroke="rgba(74,185,130,0.24)" stroke-width="1.4" fill="none" stroke-linecap="round"/><path d="M25 58 C19 52 12 50 7 52 C12 58 19 58 25 58Z" fill="rgba(82,183,136,0.16)"/><path d="M27 58 C33 52 40 50 45 52 C40 58 33 58 27 58Z" fill="rgba(82,183,136,0.16)"/><path d="M25 43 C19 37 12 35 7 37 C12 43 19 43 25 43Z" fill="rgba(82,183,136,0.14)"/><path d="M27 43 C33 37 40 35 45 37 C40 43 33 43 27 43Z" fill="rgba(82,183,136,0.14)"/><path d="M25 29 C20 24 14 22 10 24 C14 29 20 29 25 29Z" fill="rgba(82,183,136,0.12)"/><path d="M27 29 C32 24 38 22 42 24 C38 29 32 29 27 29Z" fill="rgba(82,183,136,0.12)"/><path d="M26 16 C22 12 17 10 13 12 C17 16 22 16 26 16Z" fill="rgba(82,183,136,0.09)"/><path d="M27 16 C31 12 36 10 40 12 C36 16 31 16 27 16Z" fill="rgba(82,183,136,0.09)"/></svg>
+      <svg width="34" height="46" viewBox="0 0 50 68" style="bottom:35%;right:4%;--dur:9s;--del:-3s;--ty:-14px;--r0:-20deg;--r1:-12deg;" xmlns="http://www.w3.org/2000/svg"><path d="M22 66 C8 54 1 34 4 17 C7 5 14 0 22 1 C30 0 38 7 43 20 C47 36 40 55 22 66Z" fill="rgba(220,185,150,0.20)"/><path d="M22 66 C22 46 21 26 22 1" stroke="rgba(180,145,110,0.13)" stroke-width="0.6" fill="none"/></svg>
+      <svg width="56" height="58" viewBox="0 0 82 84" style="bottom:4%;right:12%;--dur:14s;--del:-10s;--ty:-8px;--r0:7deg;--r1:-1deg;" xmlns="http://www.w3.org/2000/svg"><polygon points="41,4 74,23 74,61 41,80 7,61 7,23" fill="rgba(212,163,115,0.07)" stroke="rgba(212,163,115,0.21)" stroke-width="1.5"/></svg>
+      <svg width="24" height="38" viewBox="0 0 46 72" style="top:4%;right:3%;--dur:7s;--del:-1s;--ty:-18px;--r0:-55deg;--r1:-47deg;" xmlns="http://www.w3.org/2000/svg"><path d="M23 70 C10 58 3 38 6 20 C9 8 15 1 23 1 C31 1 37 8 40 20 C43 38 36 58 23 70Z" fill="rgba(212,163,115,0.18)"/><path d="M23 70 C22 50 21 30 23 1" stroke="rgba(180,130,80,0.13)" stroke-width="0.7" fill="none"/></svg>
+    </div>
+    <p class="section-label">Contact</p>
+    <h2 class="section-title">Let's talk</h2>
+    <p>Have a question about the product or want to collaborate? Reach us on Instagram.</p>
+    <p class="contact-closing">"Care for your skin with patience.<br>Your future self will thank you."</p>
+    <div class="social-links">
+      <a href="https://www.instagram.com/naturavera_official/" target="_blank" class="social-link">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        Instagram
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">
+      <svg width="34" height="34" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="47" fill="none" stroke="rgba(149,213,178,0.55)" stroke-width="1.6"/>
+        <circle cx="50" cy="50" r="41" fill="none" stroke="rgba(149,213,178,0.38)" stroke-width="0.9" stroke-dasharray="2.2 2.8"/>
+        <line x1="50" y1="72" x2="50" y2="23" stroke="rgba(149,213,178,0.72)" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="50" cy="20" r="3" fill="rgba(212,163,115,0.88)"/>
+        <path d="M50 36 C46 30 38 27 34 29 C37 36 45 37 50 36Z" fill="rgba(149,213,178,0.65)"/>
+        <path d="M50 36 C54 30 62 27 66 29 C63 36 55 37 50 36Z" fill="rgba(149,213,178,0.65)"/>
+        <path d="M50 52 C42 43 30 41 25 44 C29 52 42 53 50 52Z" fill="rgba(149,213,178,0.65)"/>
+        <path d="M50 52 C58 43 70 41 75 44 C71 52 58 53 50 52Z" fill="rgba(149,213,178,0.65)"/>
+        <text x="50" y="71" font-family="Cormorant Garamond,Georgia,serif" font-size="20" font-weight="600" fill="rgba(254,250,224,0.92)" text-anchor="middle">NV</text>
+      </svg>
+      <span class="footer-logo">NATURA VERA</span>
+    </div>
+    <p class="footer-tagline">Clean skin, simple habits.</p>
+    <p>© 2026 · @naturavera_official</p>
+  </footer>
+
+  <script>
+    function handleNotify(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button');
+      const input = e.target.querySelector('input');
+      btn.textContent = 'Done! ✓';
+      btn.style.background = '#95D5B2';
+      input.value = '';
+      setTimeout(() => { btn.textContent = 'Notify Me'; btn.style.background = ''; }, 3000);
+    }
+  </script>
+
+</body>
+</html>
